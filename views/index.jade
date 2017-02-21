@@ -22,6 +22,7 @@ block content
           th ID
           th Last Name
           th First Name
+          th Birthday
       tbody
         each item in results ? results : []
           tr
@@ -31,3 +32,5 @@ block content
               = item.Last_Name
             td
               = item.First_Name
+            td
+              = item.birthday
