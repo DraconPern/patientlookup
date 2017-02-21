@@ -1,0 +1,14 @@
+{
+  "development": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "mssql"
+  },
+  "test": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "mssql"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL",
+    "dialect": "mssql"
+  }
+}

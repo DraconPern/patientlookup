@@ -1,0 +1,33 @@
+extends layout
+block content
+  div.col-md-4
+    form.form-horizontal(name="search", method="post")
+      div.form-group
+        label.col-sm-3.control-label Last Name
+        div.col-sm-9
+          input.form-control(type="text", name="lastname", value=lastname)
+      div.form-group
+        label.col-sm-3.control-label First Name
+        div.col-sm-9
+          input.form-control(type="text", name="firstname", value=firstname)
+      div.form-group
+        div.col-sm-9.col-sm-offset-3
+          input.btn.btn-primary(name="submit", type="submit", value="Search")
+          | &nbsp;
+          a.btn.btn-default(href='/') Clear
+  div.col-md-8
+    table.table.table-bordered
+      thead
+        tr
+          th ID
+          th Last Name
+          th First Name
+      tbody
+        each item in results ? results : []
+          tr
+            td
+              = item.IDA
+            td
+              = item.Last_Name
+            td
+              = item.First_Name
