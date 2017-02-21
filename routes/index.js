@@ -16,12 +16,14 @@ router.post('/', function(req, res, next) {
   }
 
   if(req.body.firstname) {
+    sql += (replacements.length > 0)?' AND': '';
     sql += ' Patient.First_Name LIKE ?';
     replacements.push('%' + req.body.firstname + '%');
   }
 
   if(replacements.length === 0) {
     res.render('index', { title: 'Express' });
+    return;
   }
 
   models.sequelize.query(sql,
