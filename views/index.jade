@@ -19,18 +19,18 @@ block content
     table.table.table-bordered
       thead
         tr
-          th ID
           th Last Name
           th First Name
           th Birthday
+          th ID
       tbody
         each item in results ? results : []
           tr
-            td
-              = item.IDA
             td
               = item.Last_Name
             td
               = item.First_Name
             td
               = item.birthday
+            td
+              = item.IDA

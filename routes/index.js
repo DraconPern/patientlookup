@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  var sql = 'SELECT IDA, Last_Name, First_Name, Birth_DtTm FROM Ident JOIN Patient ON Patient.Pat_id1 = Ident.Pat_id1 WHERE Status_Inactive = 0 AND';
+  var sql = 'SELECT IDA, Last_Name, First_Name, Birth_DtTm FROM Ident JOIN Patient ON Patient.Pat_id1 = Ident.Pat_id1 WHERE Status_Inactive = 0 AND Version = 0 AND';
   var replacements = [];
   if(req.body.lastname) {
     sql += ' Patient.Last_Name LIKE ?';
@@ -28,6 +28,7 @@ router.post('/', function(req, res, next) {
     return;
   }
 
+  sql += ' ORDER BY Last_Name, First_Name, Birth_DtTm';
   models.sequelize.query(sql,
     { replacements:replacements, type: models.sequelize.QueryTypes.SELECT })
   .then(function(results) {
