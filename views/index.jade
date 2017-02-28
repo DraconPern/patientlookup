@@ -11,6 +11,13 @@ block content
         div.col-sm-9
           input.form-control(type="text", name="firstname", value=firstname)
       div.form-group
+        label.col-sm-3.control-label Date
+        div.col-sm-9
+          .input-group.date(data-provide='datepicker', data-date-autoclose='true' data-date-today-btn='linked' data-date-today-highlight='true')
+            input.form-control(type="text", name="birthday", value=birthday)
+            .input-group-addon
+              span.glyphicon.glyphicon-calendar
+      div.form-group
         div.col-sm-9.col-sm-offset-3
           input.btn.btn-primary(name="submit", type="submit", value="Search")
           | &nbsp;

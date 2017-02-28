@@ -22,6 +22,14 @@ router.post('/', function(req, res, next) {
     replacements.push('%' + req.body.firstname + '%');
   }
 
+  if(req.body.birthday) {
+    sql += (replacements.length > 0)?' AND': '';
+    sql += ' Patient.Birth_DtTm >= ? AND Patient.Birth_DtTm <= ?';
+    var birth = moment(req.body.birthday);
+    replacements.push(birth.format('L') + ' 00:00:00');
+    replacements.push(birth.format('L') + ' 23:59:59');
+  }
+
   // if no query
   if(replacements.length === 0) {
     res.render('index', { title: 'Express' });
@@ -38,7 +46,7 @@ router.post('/', function(req, res, next) {
       item.birthday = moment(item.Birth_DtTm).format('l');
     }
 
-    res.render('index', { title: 'Express', results, lastname: req.body.lastname, firstname:req.body.firstname });
+    res.render('index', { title: 'Express', results, lastname: req.body.lastname, firstname:req.body.firstname, birthday: req.body.birthday });
   }).catch(function (err) {
     res.render('error', {error: err} );
   });
