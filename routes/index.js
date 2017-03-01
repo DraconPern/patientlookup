@@ -40,13 +40,12 @@ router.post('/', function(req, res, next) {
   models.sequelize.query(sql,
     { replacements:replacements, type: models.sequelize.QueryTypes.SELECT })
   .then(function(results) {
-
     for (var i = 0;i < results.length; i++) {
       var item = results[i];
-      item.birthday = moment(item.Birth_DtTm).format('l');
+      item.birthday = moment(item.Birth_DtTm).utc().format('L');
     }
 
-    res.render('index', { title: 'Express', results, lastname: req.body.lastname, firstname:req.body.firstname, birthday: req.body.birthday });
+    res.render('index', { title: 'Express', results, lastname: req.body.lastname, firstname: req.body.firstname, birthday: req.body.birthday });
   }).catch(function (err) {
     res.render('error', {error: err} );
   });
