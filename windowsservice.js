@@ -4,7 +4,7 @@ var Service = require('node-windows').Service;
 var svc = new Service({
   name:'patientlookup',
   description: 'patientlookup',
-  script: require('path').join(__dirname,'bin/www.js')
+  script: require('path').join(__dirname,'bin/www')
 
 });
 
